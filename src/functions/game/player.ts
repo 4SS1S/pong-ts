@@ -35,6 +35,13 @@ class Player implements PlayerInterface {
     this.ctx.fillStyle = "#4f4";
     this.ctx.fillRect(this._x, this._y, 10, 50);
   }
+
+  public getPosition() {
+    return {
+      _x: this._x,
+      _y: this._y,
+    };
+  }
 }
 
 export default Player;

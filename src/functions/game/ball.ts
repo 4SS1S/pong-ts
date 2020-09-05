@@ -6,6 +6,8 @@ class Ball implements BallInterface {
   private _y = 0;
   private speedX = 1;
   private speedY = 1;
+  private player1: PositionInterface = {};
+  private player2: PositionInterface = {};
 
   constructor(_canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
     this._canvas = _canvas;
@@ -15,7 +17,23 @@ class Ball implements BallInterface {
     this._y = this._canvas.height / 2;
   }
 
+  public getPlayersPosition(
+    Player1: PositionInterface,
+    Player2: PositionInterface
+  ) {
+    // throw new Error("Method not implemented.");
+    this.player1 = Player1;
+    this.player2 = Player2;
+  }
+
   public draw() {
+    this.move();
+
+    this.ctx.fillStyle = "#4f4";
+    this.ctx.fillRect(this._x, this._y, 10, 10);
+  }
+
+  move() {
     this._x -= this.speedX;
     this._y -= this.speedY;
 
@@ -34,9 +52,6 @@ class Ball implements BallInterface {
     if (this._y + 10 >= this._canvas.height) {
       this.speedY = 1;
     }
-
-    this.ctx.fillStyle = "#4f4";
-    this.ctx.fillRect(this._x, this._y, 10, 10);
   }
 }
 

@@ -15,7 +15,7 @@ interface GameInterface {
   public setCanvas(_canvas: HTMLCanvasElement);
 }
 
-interface MoveInterface {
+interface PositionInterface {
   _x?: number;
   _y?: number;
 }
@@ -28,8 +28,17 @@ interface PlayerConstructorInterface {
 
 interface PlayerInterface {
   draw();
+
+  public getPosition(): PositionInterface;
 }
 
 interface BallInterface {
   draw();
+
+  private move();
+
+  public getPlayersPosition(
+    Player1: PositionInterface,
+    Player2: PositionInterface
+  );
 }
