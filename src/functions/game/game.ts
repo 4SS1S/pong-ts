@@ -1,3 +1,6 @@
+import Ball from "./ball";
+import Player from "./player";
+
 /**
  *
  * @class Game
@@ -5,14 +8,32 @@
 export class Game implements GameInterface {
   private _canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
+  private sprite: CanvasImageSource;
+
+  private ball: BallInterface;
+  private player: PlayerInterface;
 
   constructor(_canvas: HTMLCanvasElement) {
     this._canvas = _canvas;
     this.ctx = this._canvas.getContext("2d") as CanvasRenderingContext2D;
+    this.sprite = new Image();
+    this.sprite.src = require("../../assets/images/sprite.png");
+
+    this.ball = new Ball(this._canvas, this.ctx);
+    this.player = new Player(this._canvas, this.ctx);
   }
 
   public start() {
-    this.ctx.fillRect(this._canvas.width / 2, this._canvas.height / 2, 10, 10);
+    // this.ctx.drawImage(this.sprite, 5, 10, 246, 205, 0, 0, 246, 205);
+
+    // console.log("start");
+    this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+    this.ctx.fillStyle = "#000";
+    this.ctx.fillRect(0, 0, this._canvas.width, this._canvas.height);
+
+    this.ball.draw();
+
+    this.redraw();
   }
 
   public getCanvas() {
@@ -21,5 +42,11 @@ export class Game implements GameInterface {
 
   public setCanvas(_canvas: HTMLCanvasElement) {
     this._canvas = _canvas;
+  }
+
+  public redraw() {
+    setTimeout(() => {
+      this.start();
+    }, 32);
   }
 }

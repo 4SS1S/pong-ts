@@ -2,33 +2,19 @@
  * @class Player
  */
 class Player implements PlayerInterface {
-  private _x: number;
-  private _y: number;
-  private maxX: number;
+  private _canvas: HTMLCanvasElement;
+  private _ctx: CanvasRenderingContext2D;
 
-  constructor({ _x, _y, maxX }: PlayerConstructorInterface) {
-    this._x = _x;
-    this._y = _y;
-    this.maxX = maxX;
+  constructor(_canvas: HTMLCanvasElement, _ctx: CanvasRenderingContext2D) {
+    this._canvas = _canvas;
+    this._ctx = _ctx;
 
-    window.addEventListener("keypress", (e) => {
+    window.addEventListener("keydown", (e) => {
       console.log({ e });
     });
   }
 
-  move({ _x, _y }: MoveInterface) {
-    if (_x) {
-      if (
-        (_x >= 0 && this._x <= 0) ||
-        (_x <= this.maxX && this._x >= this.maxX)
-      )
-        this._x += _x;
-    }
-
-    if (_y) {
-      this._y -= _y;
-    }
-  }
+  move({ _x, _y }: MoveInterface) {}
 
   get() {
     //

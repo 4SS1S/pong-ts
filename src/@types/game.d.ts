@@ -33,3 +33,7 @@ interface PlayerInterface {
 
   set();
 }
+
+interface BallInterface {
+  draw();
+}
