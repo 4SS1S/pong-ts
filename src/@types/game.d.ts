@@ -27,11 +27,7 @@ interface PlayerConstructorInterface {
 }
 
 interface PlayerInterface {
-  move({ _x, _y }: MoveInterface);
-
-  get();
-
-  set();
+  draw();
 }
 
 interface BallInterface {

@@ -24,14 +24,12 @@ export class Game implements GameInterface {
   }
 
   public start() {
-    // this.ctx.drawImage(this.sprite, 5, 10, 246, 205, 0, 0, 246, 205);
-
-    // console.log("start");
     this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
     this.ctx.fillStyle = "#000";
     this.ctx.fillRect(0, 0, this._canvas.width, this._canvas.height);
 
     this.ball.draw();
+    this.player.draw();
 
     this.redraw();
   }
@@ -47,6 +45,6 @@ export class Game implements GameInterface {
   public redraw() {
     setTimeout(() => {
       this.start();
-    }, 32);
+    }, 60);
   }
 }

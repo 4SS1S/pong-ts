@@ -3,25 +3,37 @@
  */
 class Player implements PlayerInterface {
   private _canvas: HTMLCanvasElement;
-  private _ctx: CanvasRenderingContext2D;
+  private ctx: CanvasRenderingContext2D;
 
-  constructor(_canvas: HTMLCanvasElement, _ctx: CanvasRenderingContext2D) {
+  private _x = 10;
+  private _y = 0;
+
+  constructor(_canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
     this._canvas = _canvas;
-    this._ctx = _ctx;
+    this.ctx = ctx;
 
-    window.addEventListener("keydown", (e) => {
-      console.log({ e });
+    this._y = this._canvas.height / 2 - 25;
+
+    window.addEventListener("keydown", (event) => {
+      switch (event.key) {
+        case "ArrowDown":
+          if (this._y < this._canvas.height - 50) {
+            this._y += 1;
+          }
+          break;
+
+        case "ArrowUp":
+          if (this._y > 0) {
+            this._y -= 1;
+          }
+          break;
+      }
     });
   }
 
-  move({ _x, _y }: MoveInterface) {}
-
-  get() {
-    //
-  }
-
-  set() {
-    //
+  public draw() {
+    this.ctx.fillStyle = "#4f4";
+    this.ctx.fillRect(this._x, this._y, 10, 50);
   }
 }
 
