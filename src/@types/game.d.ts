@@ -16,8 +16,8 @@ interface GameInterface {
 }
 
 interface PositionInterface {
-  _x?: number;
-  _y?: number;
+  _x: number;
+  _y: number;
 }
 
 interface PlayerConstructorInterface {

@@ -28,6 +28,8 @@ export class Game implements GameInterface {
     this.ctx.fillStyle = "#000";
     this.ctx.fillRect(0, 0, this._canvas.width, this._canvas.height);
 
+    this.ball.getPlayersPosition(this.player.getPosition(), { _x: 0, _y: 0 });
+
     this.ball.draw();
     this.player.draw();
 

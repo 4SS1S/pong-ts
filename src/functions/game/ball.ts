@@ -6,8 +6,8 @@ class Ball implements BallInterface {
   private _y = 0;
   private speedX = 1;
   private speedY = 1;
-  private player1: PositionInterface = {};
-  private player2: PositionInterface = {};
+  private player1: PositionInterface = { _x: 0, _y: 0 };
+  private player2: PositionInterface = { _x: 0, _y: 0 };
 
   constructor(_canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
     this._canvas = _canvas;
@@ -51,6 +51,14 @@ class Ball implements BallInterface {
 
     if (this._y + 10 >= this._canvas.height) {
       this.speedY = 1;
+    }
+
+    if (
+      this._x <= this.player1._x + 10 &&
+      this._y >= this.player1._y - 50
+      // this._y <= this.player1._y
+    ) {
+      this.speedX = -1;
     }
   }
 }
