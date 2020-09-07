@@ -3,7 +3,7 @@
  */
 class Player implements PlayerInterface {
   private _canvas: HTMLCanvasElement;
-  private ctx: CanvasRenderingContext2D;
+  protected ctx: CanvasRenderingContext2D;
   private isSelfMover: boolean;
 
   protected _x = 10;
@@ -19,8 +19,6 @@ class Player implements PlayerInterface {
     this.isSelfMover = typeof isSelfMover === "boolean" ? isSelfMover : true;
 
     this._y = this._canvas.height / 2 - 25;
-
-    console.log({ isSelfMover: this.isSelfMover });
 
     if (this.isSelfMover) {
       window.addEventListener("keydown", (event) => {

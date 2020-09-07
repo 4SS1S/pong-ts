@@ -65,5 +65,14 @@ interface BallInterface {
     Player2: PositionInterface
   );
 
+  /**
+   * @return {number} ball x position
+   */
   public getX(): number;
+
+  /**
+   *
+   * @return {number} ball y position
+   */
+  public getY(): number;
 }

@@ -18,6 +18,9 @@ export class Game implements GameInterface {
   private WINDOW_HEIGHT = 600;
   private WINDOW_WIDHT = 800;
 
+  private player1Goal = 0;
+  private player2Goal = 0;
+
   constructor(_canvas: HTMLCanvasElement) {
     this._canvas = _canvas;
     this.ctx = this._canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -28,19 +31,55 @@ export class Game implements GameInterface {
 
     this.ball = new Ball(this._canvas, this.ctx);
     this.player = new Player(this._canvas, this.ctx);
-    this.ai = new Player(this._canvas, this.ctx, false);
-    this.ai.setX(this.WINDOW_WIDHT - 40);
+    this.ai = new AI(
+      this._canvas,
+      this.ctx,
+      this.ball,
+      this.WINDOW_WIDHT,
+      this.WINDOW_HEIGHT
+    );
+    // this.ai.setX(this.WINDOW_WIDHT - 40);
+  }
+
+  private drawText() {
+    this.ctx.font = "50px Arial";
+    this.ctx.fillStyle = "#fff";
+    this.ctx.fillText(
+      this.player1Goal.toString(),
+      this.WINDOW_WIDHT / 2 - 60,
+      50
+    );
+    this.ctx.fillText(
+      this.player2Goal.toString(),
+      this.WINDOW_WIDHT / 2 + 40,
+      50
+    );
+
+    this.ctx.fillStyle = "#fff";
+    this.ctx.shadowColor = "#fff";
+    this.ctx.shadowBlur = 2;
+    this.ctx.beginPath();
+    this.ctx.setLineDash([5, 5]);
+    this.ctx.moveTo(this.WINDOW_WIDHT / 2 + 5, 0);
+    this.ctx.lineTo(this.WINDOW_WIDHT / 2 + 5, this.WINDOW_WIDHT);
+    this.ctx.stroke();
   }
 
   private reset() {
     this.ball = new Ball(this._canvas, this.ctx);
     this.player = new Player(this._canvas, this.ctx);
-    this.ai = new Player(this._canvas, this.ctx, false);
-    this.ai.setX(this.WINDOW_WIDHT - 40);
+    this.ai = new AI(
+      this._canvas,
+      this.ctx,
+      this.ball,
+      this.WINDOW_WIDHT,
+      this.WINDOW_HEIGHT
+    );
 
     this.ball.draw();
     this.player.draw();
     this.ai.draw();
+    this.drawText();
 
     setTimeout(() => {
       this.start();
@@ -59,17 +98,20 @@ export class Game implements GameInterface {
 
     if (this.ball.getX() <= 0) {
       this.reset();
+      this.player2Goal++;
       return;
     }
 
     if (this.ball.getX() >= this.WINDOW_WIDHT - 10) {
       this.reset();
+      this.player1Goal++;
       return;
     }
 
     this.ball.draw();
     this.player.draw();
     this.ai.draw();
+    this.drawText();
 
     this.redraw();
   }
