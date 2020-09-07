@@ -30,6 +30,8 @@ interface PlayerInterface {
   draw();
 
   public getPosition(): PositionInterface;
+
+  public setX(_x: number);
 }
 
 interface BallInterface {

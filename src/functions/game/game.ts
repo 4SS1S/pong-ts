@@ -23,7 +23,8 @@ export class Game implements GameInterface {
 
     this.ball = new Ball(this._canvas, this.ctx);
     this.player = new Player(this._canvas, this.ctx);
-    this.ai = new AI(this._canvas, this.ctx);
+    this.ai = new Player(this._canvas, this.ctx, false);
+    this.ai.setX(window.innerWidth / 3.1);
   }
 
   public start() {
