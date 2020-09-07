@@ -55,10 +55,20 @@ class Ball implements BallInterface {
 
     if (
       this._x <= this.player1._x + 10 &&
-      this._y >= this.player1._y - 50
-      // this._y <= this.player1._y
+      this._y <= this.player1._y + 50 &&
+      this._y >= this.player1._y
     ) {
       this.speedX = -1;
+    }
+
+    console.log(this.player2._x, this._x);
+
+    if (
+      this._x >= this.player2._x - 10 &&
+      this._y <= this.player2._y + 50 &&
+      this._y >= this.player2._y
+    ) {
+      this.speedX = 1;
     }
   }
 }

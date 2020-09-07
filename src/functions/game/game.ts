@@ -1,5 +1,6 @@
 import Ball from "./ball";
 import Player from "./player";
+import AI from "./ai";
 
 /**
  *
@@ -12,6 +13,7 @@ export class Game implements GameInterface {
 
   private ball: BallInterface;
   private player: PlayerInterface;
+  private ai: PlayerInterface;
 
   constructor(_canvas: HTMLCanvasElement) {
     this._canvas = _canvas;
@@ -21,6 +23,7 @@ export class Game implements GameInterface {
 
     this.ball = new Ball(this._canvas, this.ctx);
     this.player = new Player(this._canvas, this.ctx);
+    this.ai = new AI(this._canvas, this.ctx);
   }
 
   public start() {
@@ -28,10 +31,14 @@ export class Game implements GameInterface {
     this.ctx.fillStyle = "#000";
     this.ctx.fillRect(0, 0, this._canvas.width, this._canvas.height);
 
-    this.ball.getPlayersPosition(this.player.getPosition(), { _x: 0, _y: 0 });
+    this.ball.getPlayersPosition(
+      this.player.getPosition(),
+      this.ai.getPosition()
+    );
 
     this.ball.draw();
     this.player.draw();
+    this.ai.draw();
 
     this.redraw();
   }
@@ -47,6 +54,6 @@ export class Game implements GameInterface {
   public redraw() {
     setTimeout(() => {
       this.start();
-    }, 60);
+    }, 20);
   }
 }

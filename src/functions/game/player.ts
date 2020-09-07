@@ -5,8 +5,8 @@ class Player implements PlayerInterface {
   private _canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
 
-  private _x = 10;
-  private _y = 0;
+  protected _x = 10;
+  protected _y = 0;
 
   constructor(_canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
     this._canvas = _canvas;
