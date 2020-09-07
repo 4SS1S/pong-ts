@@ -13,6 +13,8 @@ interface GameInterface {
   public getCanvas(): HTMLCanvasElement;
 
   public setCanvas(_canvas: HTMLCanvasElement);
+
+  public changeToOldStyle(oldStyle: boolean);
 }
 
 interface PositionInterface {
@@ -32,6 +34,8 @@ interface PlayerInterface {
   public getPosition(): PositionInterface;
 
   public setX(_x: number);
+
+  public setOldStyle(oldStyle: boolean);
 }
 
 interface BallInterface {
@@ -75,4 +79,6 @@ interface BallInterface {
    * @return {number} ball y position
    */
   public getY(): number;
+
+  public setOldStyle(oldStyle: boolean);
 }

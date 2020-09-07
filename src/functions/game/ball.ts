@@ -16,6 +16,8 @@ class Ball implements BallInterface {
   private player1: PositionInterface = { _x: 0, _y: 0 };
   private player2: PositionInterface = { _x: 0, _y: 0 };
   private song = false;
+  private sprite: CanvasImageSource;
+  private oldStyle = false;
 
   /**
    *
@@ -28,6 +30,9 @@ class Ball implements BallInterface {
 
     this._x = this._canvas.width / 2;
     this._y = this._canvas.height / 2;
+
+    this.sprite = new Image();
+    this.sprite.src = require("../../assets/images/sprite.png");
   }
 
   public getPlayersPosition(
@@ -42,8 +47,20 @@ class Ball implements BallInterface {
   public draw() {
     this.move();
 
-    this.ctx.fillStyle = "#4f4";
-    this.ctx.fillRect(this._x, this._y, 10, 10);
+    if (this.oldStyle) {
+      this.ctx.fillStyle = "#4f4";
+      this.ctx.fillRect(this._x, this._y, 10, 10);
+    } else {
+      this.ctx.drawImage(this.sprite, 20, 0, 40, 80, this._x, this._y, 45, 90);
+    }
+  }
+
+  public getOldStyle() {
+    return this.oldStyle;
+  }
+
+  public setOldStyle(oldStyle: boolean) {
+    this.oldStyle = oldStyle;
   }
 
   public getX() {

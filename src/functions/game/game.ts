@@ -9,7 +9,6 @@ import AI from "./ai";
 export class Game implements GameInterface {
   private _canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private sprite: CanvasImageSource;
 
   private ball: BallInterface;
   private player: PlayerInterface;
@@ -24,8 +23,6 @@ export class Game implements GameInterface {
   constructor(_canvas: HTMLCanvasElement) {
     this._canvas = _canvas;
     this.ctx = this._canvas.getContext("2d") as CanvasRenderingContext2D;
-    this.sprite = new Image();
-    this.sprite.src = require("../../assets/images/sprite.png");
     this._canvas.width = this.WINDOW_WIDHT;
     this._canvas.height = this.WINDOW_HEIGHT;
 
@@ -38,7 +35,6 @@ export class Game implements GameInterface {
       this.WINDOW_WIDHT,
       this.WINDOW_HEIGHT
     );
-    // this.ai.setX(this.WINDOW_WIDHT - 40);
   }
 
   private drawText() {
@@ -84,6 +80,12 @@ export class Game implements GameInterface {
     setTimeout(() => {
       this.start();
     }, 900);
+  }
+
+  public changeToOldStyle(oldStyle: boolean) {
+    this.ball.setOldStyle(oldStyle);
+    this.player.setOldStyle(oldStyle);
+    this.ai.setOldStyle(oldStyle);
   }
 
   public start() {

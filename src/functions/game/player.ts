@@ -4,7 +4,9 @@
 class Player implements PlayerInterface {
   private _canvas: HTMLCanvasElement;
   protected ctx: CanvasRenderingContext2D;
+  private sprite: CanvasImageSource;
   private isSelfMover: boolean;
+  private oldStyle = false;
 
   protected _x = 10;
   protected _y = 0;
@@ -19,6 +21,9 @@ class Player implements PlayerInterface {
     this.isSelfMover = typeof isSelfMover === "boolean" ? isSelfMover : true;
 
     this._y = this._canvas.height / 2 - 25;
+
+    this.sprite = new Image();
+    this.sprite.src = require("../../assets/images/sprite.png");
 
     if (this.isSelfMover) {
       window.addEventListener("keydown", (event) => {
@@ -40,8 +45,16 @@ class Player implements PlayerInterface {
   }
 
   public draw() {
-    this.ctx.fillStyle = "#4f4";
-    this.ctx.fillRect(this._x, this._y, 10, 50);
+    if (this.oldStyle) {
+      this.ctx.fillStyle = "#4f4";
+      this.ctx.fillRect(this._x, this._y, 10, 50);
+    } else {
+      this.ctx.drawImage(this.sprite, 0, 0, 20, 80, this._x, this._y, 20, 90);
+    }
+  }
+
+  public setOldStyle(oldStyle: boolean) {
+    this.oldStyle = oldStyle;
   }
 
   protected getIsSelfMover() {
