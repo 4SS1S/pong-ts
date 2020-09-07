@@ -27,14 +27,6 @@ class Ball implements BallInterface {
     this._y = this._canvas.height / 2;
   }
 
-  /**
-   *
-   * @param Player1 Main player
-   * @param Player2 Secondary player
-   *
-   * @desc get the players position to make the move and goals
-   *
-   */
   public getPlayersPosition(
     Player1: PositionInterface,
     Player2: PositionInterface
@@ -44,11 +36,6 @@ class Ball implements BallInterface {
     this.player2 = Player2;
   }
 
-  /**
-   *
-   * @desc paint the ball on canvas
-   *
-   */
   public draw() {
     this.move();
 
@@ -56,15 +43,7 @@ class Ball implements BallInterface {
     this.ctx.fillRect(this._x, this._y, 10, 10);
   }
 
-  /**
-   *
-   * @desc move the ball on canvas, if the
-   * ball touch each the players, it will invert
-   * the position, also to the same with the
-   * top and botton "walls"
-   *
-   */
-  move() {
+  public move() {
     this._x -= this.speedX;
     this._y -= this.speedY;
 

@@ -16,7 +16,7 @@ class Player implements PlayerInterface {
   ) {
     this._canvas = _canvas;
     this.ctx = ctx;
-    this.isSelfMover = isSelfMover || true;
+    this.isSelfMover = typeof isSelfMover === "boolean" ? isSelfMover : true;
 
     this._y = this._canvas.height / 2 - 25;
 
