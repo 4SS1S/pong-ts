@@ -64,4 +64,6 @@ interface BallInterface {
     Player1: PositionInterface,
     Player2: PositionInterface
   );
+
+  public getX(): number;
 }

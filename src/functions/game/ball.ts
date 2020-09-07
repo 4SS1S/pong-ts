@@ -1,3 +1,5 @@
+import Player from "./player";
+
 /**
  *
  * @class Ball
@@ -13,6 +15,7 @@ class Ball implements BallInterface {
   private speedY = 1;
   private player1: PositionInterface = { _x: 0, _y: 0 };
   private player2: PositionInterface = { _x: 0, _y: 0 };
+  private song = false;
 
   /**
    *
@@ -43,6 +46,10 @@ class Ball implements BallInterface {
     this.ctx.fillRect(this._x, this._y, 10, 10);
   }
 
+  public getX() {
+    return this._x;
+  }
+
   public move() {
     this._x -= this.speedX;
     this._y -= this.speedY;
@@ -54,18 +61,18 @@ class Ball implements BallInterface {
      */
     if (this._x <= 0) {
       this.speedX = -1;
+
+      console.log("Ponto pro player 2");
     }
 
     if (this._x + 10 >= this._canvas.width) {
       this.speedX = 1;
+
+      console.log("Ponto pro player 1", window.innerWidth);
     }
 
-    if (this._y <= 0) {
-      this.speedY = -1;
-    }
-
-    if (this._y + 10 >= this._canvas.height) {
-      this.speedY = 1;
+    if (this._y <= 0 || this._y + 10 >= this._canvas.height) {
+      this.speedY = this.invert(this.speedY);
     }
 
     /**
@@ -75,20 +82,32 @@ class Ball implements BallInterface {
      *
      */
     if (
-      this._x <= this.player1._x + 10 &&
-      this._y <= this.player1._y + 50 &&
-      this._y >= this.player1._y
+      (this._x <= this.player1._x + 10 &&
+        this._y <= this.player1._y + 50 &&
+        this._y >= this.player1._y) ||
+      (this._x >= this.player2._x - 10 &&
+        this._y <= this.player2._y + 50 &&
+        this._y >= this.player2._y)
     ) {
-      this.speedX = -1;
+      this.speedX = this.invert(this.speedX);
     }
+  }
 
-    if (
-      this._x >= this.player2._x - 10 &&
-      this._y <= this.player2._y + 50 &&
-      this._y >= this.player2._y
-    ) {
-      this.speedX = 1;
-    }
+  private invert(position: number): number {
+    this.playSong();
+    return (position = position * -1);
+  }
+
+  private playSong() {
+    let audio = new Audio(
+      this.song
+        ? require("../../assets/audio/1.mp3")
+        : require("../../assets/audio/2.mp3")
+    );
+
+    audio.play();
+
+    this.song = !this.song;
   }
 }
 

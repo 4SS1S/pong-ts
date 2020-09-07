@@ -15,16 +15,36 @@ export class Game implements GameInterface {
   private player: PlayerInterface;
   private ai: PlayerInterface;
 
+  private WINDOW_HEIGHT = 600;
+  private WINDOW_WIDHT = 800;
+
   constructor(_canvas: HTMLCanvasElement) {
     this._canvas = _canvas;
     this.ctx = this._canvas.getContext("2d") as CanvasRenderingContext2D;
     this.sprite = new Image();
     this.sprite.src = require("../../assets/images/sprite.png");
+    this._canvas.width = this.WINDOW_WIDHT;
+    this._canvas.height = this.WINDOW_HEIGHT;
 
     this.ball = new Ball(this._canvas, this.ctx);
     this.player = new Player(this._canvas, this.ctx);
     this.ai = new Player(this._canvas, this.ctx, false);
-    this.ai.setX(window.innerWidth / 3.1);
+    this.ai.setX(this.WINDOW_WIDHT - 40);
+  }
+
+  private reset() {
+    this.ball = new Ball(this._canvas, this.ctx);
+    this.player = new Player(this._canvas, this.ctx);
+    this.ai = new Player(this._canvas, this.ctx, false);
+    this.ai.setX(this.WINDOW_WIDHT - 40);
+
+    this.ball.draw();
+    this.player.draw();
+    this.ai.draw();
+
+    setTimeout(() => {
+      this.start();
+    }, 900);
   }
 
   public start() {
@@ -36,6 +56,16 @@ export class Game implements GameInterface {
       this.player.getPosition(),
       this.ai.getPosition()
     );
+
+    if (this.ball.getX() <= 0) {
+      this.reset();
+      return;
+    }
+
+    if (this.ball.getX() >= this.WINDOW_WIDHT - 10) {
+      this.reset();
+      return;
+    }
 
     this.ball.draw();
     this.player.draw();
