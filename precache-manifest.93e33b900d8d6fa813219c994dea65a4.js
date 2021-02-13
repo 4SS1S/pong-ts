@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0f3a17b6e7053da5d9aeda20509e9e0c",
+    "revision": "b5f8dabc2d66804094a60410bf971a2d",
     "url": "/pong-ts/index.html"
   },
   {
-    "revision": "7b314de60530414ec0f5",
+    "revision": "bcb59e49bf254a539c04",
     "url": "/pong-ts/static/css/main.e6a8bfc1.chunk.css"
   },
   {
-    "revision": "d4f1e4af15bd33fcc2a6",
-    "url": "/pong-ts/static/js/2.efd5efc7.chunk.js"
+    "revision": "be9591efeea0b02db06e",
+    "url": "/pong-ts/static/js/2.5cf3c79b.chunk.js"
   },
   {
-    "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
-    "url": "/pong-ts/static/js/2.efd5efc7.chunk.js.LICENSE.txt"
+    "revision": "f5fc2afae58c4ffc30c6148864765d4b",
+    "url": "/pong-ts/static/js/2.5cf3c79b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7b314de60530414ec0f5",
-    "url": "/pong-ts/static/js/main.c33d041a.chunk.js"
+    "revision": "bcb59e49bf254a539c04",
+    "url": "/pong-ts/static/js/main.f59210b9.chunk.js"
   },
   {
     "revision": "8af3a48979981070eceb",
