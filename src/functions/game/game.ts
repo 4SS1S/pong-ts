@@ -127,8 +127,10 @@ export class Game implements GameInterface {
   }
 
   public redraw() {
-    setTimeout(() => {
-      this.start();
-    }, 20);
+    window.requestAnimationFrame(() => {
+      setTimeout(() => {
+        this.start();
+      }, 1);
+    });
   }
 }
