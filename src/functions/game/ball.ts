@@ -11,8 +11,8 @@ class Ball implements BallInterface {
 
   private _x = 0;
   private _y = 0;
-  private speedX = Math.random() < 0.5 ? -1 : 1;
-  private speedY = Math.random() < 0.5 ? -1 : 1;
+  private speedX = Math.random() < 0.3 ? -1 : 1;
+  private speedY = Math.random() < 0.3 ? -1 : 1;
   private player1: PositionInterface = { _x: 0, _y: 0 };
   private player2: PositionInterface = { _x: 0, _y: 0 };
   private song = false;

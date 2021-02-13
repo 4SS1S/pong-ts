@@ -16,11 +16,16 @@ const App = () => {
     game.start();
   }, []);
 
+  useEffect(() => {
+    console.log(visualRef.current?.value);
+  }, []);
+
   return (
     <>
       <input
         type="checkbox"
         id="visual-padrao"
+        ref={visualRef}
         onChange={(e) => {
           game?.changeToOldStyle(e.target.checked);
         }}
